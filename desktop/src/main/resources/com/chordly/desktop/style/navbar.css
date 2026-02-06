@@ -1,0 +1,30 @@
+.navigation-bar {
+    -fx-background-color: #252422;
+    -fx-padding: 10px;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: black;
+    -fx-alignment: center;
+    -fx-pref-height: 60px;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-font-size: 14px;
+    -fx-font-family: "Roboto Thin";
+    -fx-font-weight: 600;
+    -fx-text-fill: #FFFCF2;
+    -fx-padding: 6px 12px;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: rgba(210, 210, 210, 0.2);
+    -fx-background-radius: 6px;
+}
+
+.nav-button:focused {
+    -fx-background-color: rgba(210, 210, 210, 0.1);
+    -fx-background-radius: 6px;
+}

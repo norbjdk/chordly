@@ -1,0 +1,37 @@
+.side-bar {
+    -fx-background-color: #252422;
+    -fx-border-width: 0 0 0 2px;
+    -fx-border-color: black;
+}
+
+.head {
+    -fx-text-fill: white;
+}
+
+.profile-bar {
+    -fx-background-color: #10100f;
+    -fx-padding: 13px 24px;
+    -fx-spacing: 15px;
+}
+
+.profile-bar .label {
+    -fx-padding: 0px 0px 5px 0px;
+    -fx-text-fill: #CCC5B9;
+    -fx-font-size: 13px;
+    -fx-font-family: "Roboto Light";
+    -fx-font-weight: 700;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #EB5E28;
+}
+
+.profile-bar .button {
+    -fx-background-color: #CCC5B9;
+    -fx-background-radius: 50%;
+    -fx-font-size: 14px;
+    -fx-font-family: "Roboto Thin";
+    -fx-font-weight: 600;
+    -fx-text-fill: #FFFCF2;
+    -fx-padding: 2px 5px;
+    -fx-border-radius: 0;
+    -fx-cursor: hand;
+}

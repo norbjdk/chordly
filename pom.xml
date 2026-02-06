@@ -7,4 +7,7 @@
   <name>Archetype - chordly</name>
   <url>http://maven.apache.org</url>
   <packaging>pom</packaging>
+  <modules>
+    <module>desktop</module>
+  </modules>
 </project>
