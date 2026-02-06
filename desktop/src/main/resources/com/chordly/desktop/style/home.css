@@ -1,0 +1,64 @@
+.home-panel {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.home-panel .viewport {
+    -fx-background-color: transparent;
+    -fx-background-radius: 4px;
+}
+
+.home-panel .content {
+    -fx-background-color: transparent;
+    -fx-padding: 20px;
+}
+
+.home-panel .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 10px;
+}
+
+.home-panel .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+}
+
+.home-panel .scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 8px;
+}
+
+.home-content {
+    -fx-spacing: 15px;
+}
+
+.home-header {
+    -fx-text-fill: #CCC5B9;
+    -fx-font-weight: 700;
+    -fx-font-family: "Roboto Thin";
+    -fx-font-size: 38px;
+}
+
+.hero-box {
+    -fx-spacing: 10px;
+    -fx-font-family: "Roboto Light";
+}
+
+.hero-header {
+    -fx-min-width: 400px;
+    -fx-max-width: 550px;
+    -fx-text-alignment: right;
+    -fx-wrap-text: true;
+    -fx-font-size: 40px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #FFFCF2;
+}
+
+.hero-paragraph {
+    -fx-pref-width: 450px;
+    -fx-max-width: 550px;
+    -fx-text-alignment: right;
+    -fx-wrap-text: true;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #CCC5B9;
+}

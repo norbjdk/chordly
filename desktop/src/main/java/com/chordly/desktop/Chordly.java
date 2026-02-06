@@ -10,9 +10,9 @@ import java.io.IOException;
 public class Chordly extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Chordly.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        FXMLLoader fxmlLoader = new FXMLLoader(Chordly.class.getResource("main.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 1600, 800);
+        stage.setTitle("Chordly");
         stage.setScene(scene);
         stage.show();
     }
