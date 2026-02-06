@@ -52,8 +52,8 @@ public class HomeView extends ScrollPane implements UIElement {
         Rectangle heroImgContainer = new Rectangle();
         heroImgContainer.setArcWidth(30);
         heroImgContainer.setArcHeight(20);
-        heroImgContainer.setWidth(655);
-        heroImgContainer.setHeight(400);
+        heroImgContainer.setWidth(555);
+        heroImgContainer.setHeight(320);
         heroImgContainer.setFill(new ImagePattern(heroImg));
         StackPane imgContainer = new StackPane();
         imgContainer.getChildren().add(heroImgContainer);

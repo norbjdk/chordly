@@ -2,6 +2,7 @@
     -fx-hgap: 50px;
     -fx-alignment: center;
     -fx-orientation: horizontal;
+    -fx-vgap: 50px;
 }
 
 .new-project-view .data-form,

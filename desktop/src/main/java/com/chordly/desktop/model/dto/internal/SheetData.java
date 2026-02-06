@@ -4,6 +4,11 @@ public class SheetData {
     private String title = "";
     private String subtitle = "";
     private String composer = "";
+    private Template template;
+
+    public enum Template {
+        TREBLE, BASS, GRAND
+    }
 
     public SheetData() {}
 
@@ -29,5 +34,13 @@ public class SheetData {
 
     public void setComposer(String composer) {
         this.composer = composer;
+    }
+
+    public Template getTemplate() {
+        return template;
+    }
+
+    public void setTemplate(Template template) {
+        this.template = template;
     }
 }

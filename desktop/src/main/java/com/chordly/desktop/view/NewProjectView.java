@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.Reflection;
+import javafx.scene.image.Image;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -92,6 +93,17 @@ public class NewProjectView extends FlowPane implements UIElement {
         categoryList.getItems().addAll("General", "Choral", "Solo", "Band", "Orchestral");
         templatesList.getItems().addAll("Treble Clef", "Bass Clef", "Grand Staff");
 
+        templatesList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                switch (newValue) {
+                    case "Treble Clef" -> data.setTemplate(SheetData.Template.TREBLE);
+                    case "Bass Clef" -> data.setTemplate(SheetData.Template.BASS);
+                    case "Grand Staff" -> data.setTemplate(SheetData.Template.GRAND);
+                }
+            }
+            EventBus.getInstance().publish(new ChangeProjectPreviewEvent());
+        });
+
         templateForm.add(categoryList, 0, 1);
         templateForm.add(templatesList, 1, 1);
 
@@ -136,6 +148,16 @@ public class NewProjectView extends FlowPane implements UIElement {
             graphicsContext.setTextAlign(TextAlignment.RIGHT);
             graphicsContext.setFont(Font.font("Times New Roman", 14));
             graphicsContext.fillText(data.getComposer(), sheetPreview.getWidth() - 24, 100);
+        }
+        if (!(data.getTemplate() == null)) {
+            Image image;
+            switch (data.getTemplate()) {
+                case TREBLE -> image = new Image(Objects.requireNonNull(getClass().getResource("/com/chordly/desktop/asset/img/treble.jpeg")).toExternalForm());
+                case BASS -> image = new Image(Objects.requireNonNull(getClass().getResource("/com/chordly/desktop/asset/img/bass.jpeg")).toExternalForm());
+                case GRAND -> image = new Image(Objects.requireNonNull(getClass().getResource("/com/chordly/desktop/asset/img/grand.jpeg")).toExternalForm());
+                case null, default -> throw new RuntimeException("Error with template");
+            }
+            graphicsContext.drawImage(image, 10, 120, sheetPreview.getWidth() - 30, sheetPreview.getHeight() / 2);
         }
     }
 
