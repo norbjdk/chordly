@@ -1,0 +1,67 @@
+/* Główny kontener Accordion */
+.accordion {
+    -fx-background-color: transparent;
+    -fx-padding: 5;
+    -fx-pref-width: 200px;
+}
+
+/* Styl dla każdego TitledPane wewnątrz Accordion */
+.accordion > .titled-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-margin: 10 0 10 0; /* Delikatny odstęp między panelami */
+}
+
+/* Nagłówek (pasek tytułowy) */
+.accordion > .titled-pane > .title {
+    -fx-background-color: #f4f4f4;
+    -fx-background-radius: 8 8 0 0; /* Zaokrąglenie tylko góry */
+    -fx-padding: 10 15;
+    -fx-cursor: hand;
+    -fx-transition: 0.3s;
+}
+
+/* Nagłówek przy najechaniu myszką */
+.accordion > .titled-pane > .title:hover {
+    -fx-background-color: #e8e8e8;
+}
+
+/* Tytuł gdy panel jest rozwinięty - dodajemy kolor akcentu */
+.accordion > .titled-pane:expanded > .title {
+    -fx-background-color: #3498db; /* Kolor niebieski */
+}
+
+.accordion > .titled-pane:expanded > .title > .text {
+    -fx-fill: white; /* Biały tekst przy aktywnym panelu */
+    -fx-font-weight: bold;
+}
+
+/* Ukrywamy domyślną strzałkę lub zmieniamy jej kolor */
+.accordion > .titled-pane > .title > .arrow-button > .arrow {
+    -fx-background-color: #7f8c8d;
+}
+
+.accordion > .titled-pane:expanded > .title > .arrow-button > .arrow {
+    -fx-background-color: white;
+}
+
+/* Kontener na treść wewnątrz panelu */
+.accordion > .titled-pane > .content {
+    -fx-background-color: white;
+    -fx-border-color: #f4f4f4;
+    -fx-border-width: 0 1 1 1; /* Obramowanie tylko z boków i dołu */
+    -fx-border-radius: 0 0 8 8;
+    -fx-background-radius: 0 0 8 8;
+    -fx-padding: 15;
+}
+
+.tool-btn {
+    -fx-text-fill: black;
+    -fx-background-color: transparent;
+    -fx-border-color: gray;
+    -fx-border-width: 2px;
+    -fx-border-radius: 6px;
+    -fx-pref-width: 36px;
+    -fx-pref-height: 36px;
+    -fx-padding: 4px;
+}

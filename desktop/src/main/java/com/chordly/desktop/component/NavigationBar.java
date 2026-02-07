@@ -74,6 +74,7 @@ public class NavigationBar extends HBox implements UIElement {
     public void applyEvents() {
         homeBtn.setOnAction(actionEvent -> EventBus.getInstance().publish(new ChangeViewEvent("home")));
         newProjectBtn.setOnAction(actionEvent -> EventBus.getInstance().publish(new ChangeViewEvent("new-project")));
+        openProjectBtn.setOnAction(actionEvent -> EventBus.getInstance().publish(new ChangeViewEvent("project")));
     }
 
     @Override

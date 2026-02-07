@@ -6,6 +6,7 @@ import com.chordly.desktop.model.event.ChangeViewEvent;
 import com.chordly.desktop.model.event.EventBus;
 import com.chordly.desktop.view.HomeView;
 import com.chordly.desktop.view.NewProjectView;
+import com.chordly.desktop.view.ProjectView;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -27,6 +28,7 @@ public class MainController implements Initializable {
 
     private final HomeView homeView = new HomeView();
     private final NewProjectView newProjectView = new NewProjectView();
+    private final ProjectView projectView = new ProjectView();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -57,6 +59,7 @@ public class MainController implements Initializable {
         switch (view) {
             case "home" -> viewContainer.getChildren().add(homeView);
             case "new-project" -> viewContainer.getChildren().add(newProjectView);
+            case "project" -> viewContainer.getChildren().add(projectView);
         }
     }
 

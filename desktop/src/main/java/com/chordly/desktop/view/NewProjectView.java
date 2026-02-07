@@ -152,9 +152,9 @@ public class NewProjectView extends FlowPane implements UIElement {
         if (!(data.getTemplate() == null)) {
             Image image;
             switch (data.getTemplate()) {
-                case TREBLE -> image = new Image(Objects.requireNonNull(getClass().getResource("/com/chordly/desktop/asset/img/treble.jpeg")).toExternalForm());
-                case BASS -> image = new Image(Objects.requireNonNull(getClass().getResource("/com/chordly/desktop/asset/img/bass.jpeg")).toExternalForm());
-                case GRAND -> image = new Image(Objects.requireNonNull(getClass().getResource("/com/chordly/desktop/asset/img/grand.jpeg")).toExternalForm());
+                case TREBLE -> image = new Image(Objects.requireNonNull(getClass().getResource("/com/chordly/desktop/asset/img/treble.png")).toExternalForm());
+                case BASS -> image = new Image(Objects.requireNonNull(getClass().getResource("/com/chordly/desktop/asset/img/bass.png")).toExternalForm());
+                case GRAND -> image = new Image(Objects.requireNonNull(getClass().getResource("/com/chordly/desktop/asset/img/grand.png")).toExternalForm());
                 case null, default -> throw new RuntimeException("Error with template");
             }
             graphicsContext.drawImage(image, 10, 120, sheetPreview.getWidth() - 30, sheetPreview.getHeight() / 2);
