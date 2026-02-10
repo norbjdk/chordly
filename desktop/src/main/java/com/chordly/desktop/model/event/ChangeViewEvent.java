@@ -1,13 +1,16 @@
 package com.chordly.desktop.model.event;
 
-public class ChangeViewEvent {
-    private final String viewName;
+import com.chordly.desktop.model.dto.internal.ChangeViewRequest;
+import com.chordly.desktop.model.dto.internal.ChangeViewResponse;
 
-    public ChangeViewEvent(String viewName) {
-        this.viewName = viewName;
+public class ChangeViewEvent {
+    private final ChangeViewResponse response;
+
+    public ChangeViewEvent(ChangeViewResponse response) {
+        this.response = response;
     }
 
-    public String getViewName() {
-        return viewName;
+    public ChangeViewResponse getResponse() {
+        return response;
     }
 }

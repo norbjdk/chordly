@@ -1,3 +1,30 @@
 .sheet {
-    -fx-background-color: whitesmoke;
+    -fx-background-color: white;
+}
+
+.title {
+    -fx-background-color: transparent;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-border-width: 0;
+    -fx-font-size: 24px;
+    -fx-font-family: "Arial Black";
+}
+
+.album {
+    -fx-background-color: transparent;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-border-width: 0;
+    -fx-font-size: 16px;
+    -fx-font-family: "Roboto Light";
+}
+
+.author {
+    -fx-background-color: transparent;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+    -fx-border-width: 0;
+    -fx-font-size: 14px;
+    -fx-font-family: "Times New Roman";
 }

@@ -2,22 +2,28 @@ package com.chordly.desktop.controller;
 
 import com.chordly.desktop.component.NavigationBar;
 import com.chordly.desktop.component.SideBar;
+import com.chordly.desktop.manager.AppManager;
+import com.chordly.desktop.model.dto.internal.ChangeViewRequest;
+import com.chordly.desktop.model.dto.internal.ChangeViewResponse;
 import com.chordly.desktop.model.event.ChangeViewEvent;
 import com.chordly.desktop.model.event.EventBus;
-import com.chordly.desktop.view.HomeView;
-import com.chordly.desktop.view.NewProjectView;
-import com.chordly.desktop.view.ProjectView;
+import com.chordly.desktop.model.ui.ViewName;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.layout.*;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
-
     @FXML private BorderPane root;
+
+    private AppManager appManager;
+
+    private final ArrayList<Node> views = new ArrayList<>();
 
     private final NavigationBar navigationBar = new NavigationBar();
     private final SideBar sideBar = new SideBar();
@@ -26,15 +32,16 @@ public class MainController implements Initializable {
     private final StackPane viewContainer = new StackPane();
     private final BorderPane layoutContainer = new BorderPane();
 
-    private final HomeView homeView = new HomeView();
-    private final NewProjectView newProjectView = new NewProjectView();
-    private final ProjectView projectView = new ProjectView();
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setupLayout();
         applyListeners();
-        changeView("home");
+
+        if (appManager == null) {
+            appManager = AppManager.getInstance();
+        }
+        appManager.changeView(new ChangeViewRequest(ViewName.HOME));
+
     }
 
     private void setupLayout() {
@@ -53,17 +60,15 @@ public class MainController implements Initializable {
         root.setRight(sideContainer);
     }
 
-    private void changeView(String view) {
-        if (view.isEmpty()) return;
+    private void changeView(ChangeViewResponse response) {
         viewContainer.getChildren().clear();
-        switch (view) {
-            case "home" -> viewContainer.getChildren().add(homeView);
-            case "new-project" -> viewContainer.getChildren().add(newProjectView);
-            case "project" -> viewContainer.getChildren().add(projectView);
-        }
+        viewContainer.getChildren().add(response.getView());
     }
 
     private void applyListeners() {
-        EventBus.getInstance().subscribe(ChangeViewEvent.class, event -> changeView(event.getViewName()));
+        EventBus.getInstance().subscribe(ChangeViewEvent.class, changeViewEvent -> {
+            final ChangeViewResponse response = changeViewEvent.getResponse();
+            changeView(response);
+        });
     }
 }

@@ -15,8 +15,6 @@ import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 
 import java.util.Objects;
 
-import static com.chordly.desktop.util.IconTool.setIcon;
-
 public class ProfileBar extends HBox {
     private Image profileImg;
     private String name;
@@ -50,12 +48,6 @@ public class ProfileBar extends HBox {
         lblContainer.getChildren().add(nameLabel);
         getChildren().add(lblContainer);
         // Notification Button
-        Button notificationBtn = new Button();
-        setIcon(notificationBtn, FontAwesomeSolid.BELL, 14);
-        StackPane btnContainer = new StackPane();
-        btnContainer.setAlignment(Pos.BOTTOM_CENTER);
-        btnContainer.getChildren().add(notificationBtn);
-        getChildren().add(btnContainer);
     }
 
     public void setImage(Image image){

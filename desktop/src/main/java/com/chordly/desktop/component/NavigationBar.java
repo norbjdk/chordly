@@ -1,89 +1,132 @@
 package com.chordly.desktop.component;
 
-import com.chordly.desktop.model.event.ChangeViewEvent;
+import com.chordly.desktop.manager.AppManager;
+import com.chordly.desktop.model.dto.internal.ChangeViewRequest;
+import com.chordly.desktop.model.dto.internal.OpenProjectRequest;
 import com.chordly.desktop.model.event.EventBus;
-import com.chordly.desktop.model.ui.UIElement;
-import javafx.scene.Node;
+import com.chordly.desktop.model.event.OpenProjectEvent;
+import com.chordly.desktop.model.ui.ViewName;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.stage.FileChooser;
 import org.kordamp.ikonli.fontawesome5.FontAwesomeSolid;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Objects;
 
-import static com.chordly.desktop.util.IconTool.setIcon;
+import static com.chordly.desktop.util.ButtonFactory.addIcon;
+import static com.chordly.desktop.util.ButtonFactory.createButton;
 
-public class NavigationBar extends HBox implements UIElement {
-    private final Button homeBtn = new Button("Home");
-    private final Button newProjectBtn = new Button("New Project");
-    private final Button openProjectBtn = new Button("Open Project");
-    private final Button collectionBtn = new Button("Collection");
-    private final Button learnBtn = new Button("Learn");
+public class NavigationBar extends HBox {
+    private AppManager appManager;
+    private final ArrayList<Button> buttons = new ArrayList<>();
 
-    private final Button[] buttons = {homeBtn, newProjectBtn, openProjectBtn, collectionBtn, learnBtn};
+    private Button homeBtn;
+    private Button newProjectBtn;
+    private Button openProjectBtn;
+    private Button collectionBtn;
+    private Button learnBtn;
+    private Button currentProjectBtn;
 
     public NavigationBar() {
         getStylesheets().add(Objects.requireNonNull(getClass().getResource("/com/chordly/desktop/style/navbar.css")).toExternalForm());
-        getStyleClass().add("navigation-bar");
-        applyEvents();
+
+        initButtons();
         setupButtons();
+        setupLayout();
+        setupEventHandlers();
     }
 
-    @Override
-    public void applyStyle(Node target, String className) {
-        target.getStyleClass().add(className);
+    private void initButtons() {
+        String [] buttonStyles = new String[]{"nav-button"};
+
+        homeBtn = createButton("Home", "home", "Switch to home", buttonStyles, buttons);
+        newProjectBtn = createButton("New Project", "new-project", "Create new project", buttonStyles, buttons);
+        openProjectBtn = createButton("Open Project", "open-project", "Open any project", buttonStyles, buttons);
+        currentProjectBtn = createButton("", "current-project", "See your current project", buttonStyles, buttons);
+        collectionBtn = createButton("Collection", "collection", "See your projects", buttonStyles, buttons);
+        learnBtn = createButton("Learn", "learn", "Learn about chordly", buttonStyles, buttons);
     }
 
     private void setupButtons() {
+        int b = 0;
+
         FontAwesomeSolid[] iconPack = {
                 FontAwesomeSolid.HOME,
                 FontAwesomeSolid.PLUS_CIRCLE,
                 FontAwesomeSolid.FOLDER_OPEN,
+                FontAwesomeSolid.BOOK_OPEN,
                 FontAwesomeSolid.ADDRESS_BOOK,
                 FontAwesomeSolid.GRADUATION_CAP
         };
 
-        for (int i = 0; i < buttons.length; i++) {
-            setIcon(buttons[i], iconPack[i]);
-            applyStyle(buttons[i], "nav-button");
-            buttons[i].setMaxHeight(Double.MAX_VALUE);
+        for (Button button : buttons) {
+            addIcon(button, iconPack[b], 16);
+            b++;
         }
-
-        Region leftSpacer = new Region();
-        HBox.setHgrow(leftSpacer, Priority.ALWAYS);
-
-        Region rightSpacer = new Region();
-        HBox.setHgrow(rightSpacer, Priority.ALWAYS);
-
-//        getChildren().add(leftSpacer);
-//        getChildren().addAll(buttons);
-//        getChildren().add(rightSpacer);
-
-        getChildren().add(buttons[0]);
-        getChildren().add(buttons[1]);
-        getChildren().add(buttons[2]);
-        getChildren().add(rightSpacer);
-        getChildren().add(buttons[3]);
-        getChildren().add(buttons[4]);
-
-        setSpacing(20);
     }
 
-    @Override
-    public void applyEvents() {
-        homeBtn.setOnAction(actionEvent -> EventBus.getInstance().publish(new ChangeViewEvent("home")));
-        newProjectBtn.setOnAction(actionEvent -> EventBus.getInstance().publish(new ChangeViewEvent("new-project")));
-        openProjectBtn.setOnAction(actionEvent -> EventBus.getInstance().publish(new ChangeViewEvent("project")));
+    private void setupLayout() {
+        this.setSpacing(5);
+        this.getStyleClass().add("nav-bar");
+
+        getChildren().addAll(
+                homeBtn,
+                newProjectBtn,
+                openProjectBtn,
+                createSpacer(),
+                currentProjectBtn,
+                createSpacer(),
+                collectionBtn,
+                learnBtn
+        );
     }
 
-    @Override
-    public void applyListeners() {
+    private void setupEventHandlers() {
+        homeBtn.setOnAction(actionEvent -> onHomeButtonClicked());
+        newProjectBtn.setOnAction(actionEvent -> onNewProjectButtonClicked());
+        openProjectBtn.setOnAction(actionEvent -> onOpenProjectButtonClicked()); // DODAJ TĘ LINIĘ
+    }
+
+    private void setupEventListeners() {
 
     }
 
-    @Override
-    public void applyLayout() {
+    private Region createSpacer() {
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
 
+        return spacer;
+    }
+
+    private void onHomeButtonClicked() {
+        if (appManager == null) {
+            appManager = AppManager.getInstance();
+        }
+        appManager.changeView(new ChangeViewRequest(ViewName.HOME));
+    }
+
+    private void onNewProjectButtonClicked() {
+        if (appManager == null) {
+            appManager = AppManager.getInstance();
+        }
+        appManager.changeView(new ChangeViewRequest(ViewName.CREATE_PROJECT));
+    }
+
+    private void onOpenProjectButtonClicked() {
+        final FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("MusicXML Files", "*.musicxml"));
+        final File selectedFile = fileChooser.showOpenDialog(this.getScene().getWindow());
+        if (selectedFile != null) {
+            if (appManager == null) {
+                appManager = AppManager.getInstance();
+            }
+            final OpenProjectRequest request = new OpenProjectRequest();
+            request.setFile(selectedFile);
+            appManager.openProject(request);
+        }
     }
 }

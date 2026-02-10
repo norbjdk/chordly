@@ -1,6 +1,6 @@
 package com.chordly.desktop.view;
 
-import com.chordly.desktop.model.ui.UIElement;
+import com.chordly.desktop.model.ui.Presentable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -12,14 +12,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.QuadCurve;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.TextAlignment;
 
 import java.util.Objects;
 
 
-public class HomeView extends ScrollPane implements UIElement {
+public class HomeView extends ScrollPane implements Presentable {
     private final VBox contentContainer = new VBox();
     private final Label header = new Label("Welcome to Chordly");
     private final AnchorPane heroContainer = new AnchorPane();
@@ -88,22 +86,6 @@ public class HomeView extends ScrollPane implements UIElement {
         encourageContainer.getChildren().add(encourageHeader);
     }
 
-    @Override
-    public void applyEvents() {
-
-    }
-
-    @Override
-    public void applyListeners() {
-
-    }
-
-    @Override
-    public void applyLayout() {
-
-    }
-
-    @Override
     public void applyStyle(Node target, String className) {
         target.getStyleClass().add(className);
     }

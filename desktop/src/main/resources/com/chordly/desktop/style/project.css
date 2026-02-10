@@ -1,67 +1,184 @@
-/* Główny kontener Accordion */
+.toolbar {
+    -fx-background-color: #252422 !important;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px !important;
+    -fx-border-color: #EB5E28 !important;
+    -fx-border-width: 0 0 1px 0 !important;
+    -fx-spacing: 10px !important;
+}
+
+.toolbar-button {
+    -fx-background-color: transparent !important;
+    -fx-border-color: #aaaaaa !important;
+    -fx-border-width: 1px !important;
+    -fx-border-radius: 50% !important;
+    -fx-background-radius: 50% !important;
+    -fx-text-fill: #CCC5B9 !important;
+    -fx-font-size: 20px !important;
+    -fx-min-width: 45px !important;
+    -fx-min-height: 45px !important;
+    -fx-pref-width: 45px !important;
+    -fx-pref-height: 45px !important;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
+.toolbar-button:hover {
+    -fx-background-color: #e8e8e8 !important;
+    -fx-border-color: #888888 !important;
+    -fx-cursor: hand !important;
+    -fx-text-fill: #252422;
+}
+
+.toolbar-button:armed,
+.toolbar-button.active {
+    -fx-background-color: #d0e0ff !important;
+    -fx-border-color: #4488ff !important;
+}
+
+.separator:vertical {
+    -fx-padding: 0 5px 0 5px !important;
+}
+
+.separator .line {
+    -fx-border-width: 1px;
+    -fx-border-color: #EB5E28;
+}
+
+/* ====== TOOLBOX ====== */
+.toolbox {
+    -fx-background-color: #252422 !important;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px !important;
+    -fx-spacing: 5px !important;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 2);
+}
+
 .accordion {
-    -fx-background-color: transparent;
-    -fx-padding: 5;
-    -fx-pref-width: 200px;
+    -fx-background-color: transparent !important;
+    -fx-padding: 0 !important;
+    -fx-background-radius: 8px;
 }
 
-/* Styl dla każdego TitledPane wewnątrz Accordion */
-.accordion > .titled-pane {
-    -fx-background-color: white;
-    -fx-background-radius: 8;
-    -fx-margin: 10 0 10 0; /* Delikatny odstęp między panelami */
-}
-
-/* Nagłówek (pasek tytułowy) */
-.accordion > .titled-pane > .title {
-    -fx-background-color: #f4f4f4;
-    -fx-background-radius: 8 8 0 0; /* Zaokrąglenie tylko góry */
-    -fx-padding: 10 15;
-    -fx-cursor: hand;
-    -fx-transition: 0.3s;
-}
-
-/* Nagłówek przy najechaniu myszką */
-.accordion > .titled-pane > .title:hover {
-    -fx-background-color: #e8e8e8;
-}
-
-/* Tytuł gdy panel jest rozwinięty - dodajemy kolor akcentu */
-.accordion > .titled-pane:expanded > .title {
-    -fx-background-color: #3498db; /* Kolor niebieski */
-}
-
-.accordion > .titled-pane:expanded > .title > .text {
-    -fx-fill: white; /* Biały tekst przy aktywnym panelu */
-    -fx-font-weight: bold;
-}
-
-/* Ukrywamy domyślną strzałkę lub zmieniamy jej kolor */
-.accordion > .titled-pane > .title > .arrow-button > .arrow {
-    -fx-background-color: #7f8c8d;
-}
-
-.accordion > .titled-pane:expanded > .title > .arrow-button > .arrow {
-    -fx-background-color: white;
-}
-
-/* Kontener na treść wewnątrz panelu */
-.accordion > .titled-pane > .content {
-    -fx-background-color: white;
-    -fx-border-color: #f4f4f4;
-    -fx-border-width: 0 1 1 1; /* Obramowanie tylko z boków i dołu */
-    -fx-border-radius: 0 0 8 8;
-    -fx-background-radius: 0 0 8 8;
-    -fx-padding: 15;
-}
-
-.tool-btn {
-    -fx-text-fill: black;
-    -fx-background-color: transparent;
-    -fx-border-color: gray;
-    -fx-border-width: 2px;
+.titled-pane {
+    -fx-background-color: transparent !important;
+    -fx-background-radius: 6px;
+    -fx-border-color: rgba(235, 94, 40, 0.3) !important; /* EB5E28 z przezroczystością */
+    -fx-border-width: 1px !important;
     -fx-border-radius: 6px;
-    -fx-pref-width: 36px;
-    -fx-pref-height: 36px;
+    -fx-padding: 0 !important;
+    -fx-margin: 0 0 8px 0 !important;
+}
+
+.titled-pane > .title {
+    -fx-background-color: linear-gradient(to bottom, #3a3a3a, #2a2a2a) !important;
+    -fx-background-radius: 6px 6px 6px 6px !important;
+    -fx-border-color: rgba(235, 94, 40, 0.5) !important;
+    -fx-border-width: 1px !important;
+    -fx-border-radius: 6px;
+    -fx-padding: 10px 15px !important;
+    -fx-font-size: 14px !important;
+    -fx-font-weight: 600 !important;
+    -fx-text-fill: #CCC5B9 !important;
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
+}
+
+/* Tytuł gdy pane jest expanded */
+.titled-pane:expanded > .title {
+    -fx-background-color: linear-gradient(to bottom, #EB5E28, #D45324) !important; /* Pomarańczowy gradient */
+    -fx-background-radius: 6px 6px 0 0 !important;
+    -fx-border-color: #EB5E28 !important;
+    -fx-border-width: 1px !important;
+    -fx-border-radius: 6px 6px 0 0;
+    -fx-text-fill: #ffffff !important;
+}
+
+/* Strzałka rozwijania */
+.titled-pane > .title > .arrow-button {
+    -fx-background-color: transparent !important;
+}
+
+.titled-pane > .title > .arrow-button .arrow {
+    -fx-background-color: #ffffff !important;
+    -fx-shape: "M 0 0 L 4 4 L 8 0 Z";
+    -fx-scale-shape: false;
     -fx-padding: 4px;
+}
+
+.titled-pane:expanded > .title > .arrow-button .arrow {
+    -fx-rotate: 180;
+    -fx-background-color: #ffffff !important;
+}
+
+/* Zawartość TitledPane */
+.titled-pane > *.content {
+    -fx-background-color: #2D2B28 !important; /* Ciemne tło dla zawartości */
+    -fx-background-radius: 0 0 6px 6px !important;
+    -fx-border-color: rgba(235, 94, 40, 0.3) !important;
+    -fx-border-width: 0 1px 1px 1px !important;
+    -fx-border-radius: 0 0 6px 6px;
+    -fx-padding: 15px !important;
+    -fx-margin: 0 !important;
+}
+
+
+.toolbox-button {
+    -fx-background-color: #3A3835 !important;
+    -fx-border-color: #EB5E28 !important;
+    -fx-border-width: 1px !important;
+    -fx-border-radius: 50% !important;
+    -fx-background-radius: 50% !important;
+    -fx-text-fill: #CCC5B9 !important;
+    -fx-font-size: 20px !important;
+    -fx-min-width: 50px !important;
+    -fx-min-height: 50px !important;
+    -fx-pref-width: 50px !important;
+    -fx-pref-height: 50px !important;
+    -fx-text-alignment: center !important;
+    -fx-alignment: center !important;
+    -fx-cursor: hand !important;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 3, 0, 0, 1);
+}
+
+.toolbox-button:hover {
+    -fx-background-color: #EB5E28 !important;
+    -fx-border-color: #FF7B4D !important;
+    -fx-text-fill: #ffffff !important;
+    -fx-effect: dropshadow(gaussian, rgba(235, 94, 40, 0.4), 6, 0, 0, 2);
+}
+
+.toolbox-button:pressed,
+.toolbox-button:armed,
+.toolbox-button.active {
+    -fx-background-color: #D45324 !important;
+    -fx-border-color: #FF7B4D !important;
+    -fx-text-fill: #ffffff !important;
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+    -fx-effect: dropshadow(gaussian, rgba(212, 83, 36, 0.6), 8, 0, 0, 3);
+}
+
+/* ====== KONTENERY GRID ====== */
+.toolbox-container {
+    -fx-background-color: transparent !important;
+    -fx-vgap: 10px !important;
+    -fx-hgap: 10px !important;
+    -fx-alignment: center !important;
+    -fx-padding: 0 !important;
+}
+
+/* ====== SPECJALNE STYLE DLA ACCORDION ====== */
+/* Usuń dziwne obramowania */
+.accordion .split-pane-divider {
+    -fx-background-color: transparent !important;
+    -fx-padding: 0 !important;
+}
+
+/* Popraw wygląd gdy jest focus */
+.titled-pane:focused > .title {
+    -fx-background-color: linear-gradient(to bottom, #4a4a4a, #3a3a3a) !important;
+}
+
+.titled-pane:expanded:focused > .title {
+    -fx-background-color: linear-gradient(to bottom, #FF7B4D, #EB5E28) !important;
 }

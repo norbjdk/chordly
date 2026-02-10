@@ -1,5 +1,6 @@
 package com.chordly.desktop;
 
+import com.chordly.desktop.manager.AppManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,7 +11,7 @@ import java.io.IOException;
 public class Chordly extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Chordly.class.getResource("main.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Chordly.class.getResource("fxml/main.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1600, 800);
         stage.setTitle("Chordly");
         stage.setScene(scene);
