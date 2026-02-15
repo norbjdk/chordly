@@ -38,14 +38,18 @@ public class UserService {
         currentUser = user;
         try {
             String userJson = mapper.writeValueAsString(user);
-            TokenStorage.saveToken(userJson);
+            TokenStorage.saveUser(userJson);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
     }
 
     public boolean isLoggedIn() {
-        return TokenStorage.isLoggedIn() && currentUser != null;
+        try {
+            return TokenStorage.isLoggedIn() && getCurrentUser() != null;
+        } catch (IOException e) {
+            return false;
+        }
     }
 
     public static void logout() {
@@ -58,9 +62,14 @@ public class UserService {
     }
 
     public UserEntity getUserByUsername(String username) throws IOException {
-        String url = ApiConfig.getBaseUrl() + "/users/" + username;
+        String url = ApiConfig.getBaseUrl() + "/api/v1/users/" + username;
+        String token = TokenStorage.getToken();
 
-        Request request = new Request.Builder().url(url).get().build();
+        Request request = new Request.Builder()
+                .url(url)
+                .header("Authorization", "Bearer " + token)
+                .get()
+                .build();
 
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful() && response.body() != null) {

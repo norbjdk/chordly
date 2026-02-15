@@ -52,12 +52,12 @@ public class MeasurePane extends HBox {
         Text beatsText = new Text(String.valueOf(measure.getBeats()));
         Text beatTypeText = new Text(String.valueOf(measure.getBeatType()));
 
-        Font timeFont = Font.font("Arial Black", 20);
+        Font timeFont = Font.font("Arial Black", 22);
         beatsText.setFont(timeFont);
         beatTypeText.setFont(timeFont);
 
-        beatsText.setTranslateY(-12);
-        beatTypeText.setTranslateY(12);
+        beatsText.setTranslateY(-21);
+        beatTypeText.setTranslateY(1);
 
         timeSignature.getChildren().addAll(beatsText, beatTypeText);
         timeSignature.setPrefWidth(30);

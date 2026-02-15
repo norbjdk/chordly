@@ -15,4 +15,12 @@ module com.chordly.desktop {
     exports com.chordly.desktop;
     opens com.chordly.desktop.controller to javafx.fxml;
     exports com.chordly.desktop.controller;
+
+    exports com.chordly.desktop.model.dto.internal to com.fasterxml.jackson.databind;
+    exports com.chordly.desktop.model.dto.external to com.fasterxml.jackson.databind;
+    exports com.chordly.desktop.model.entity to com.fasterxml.jackson.databind;
+
+    opens com.chordly.desktop.model.dto.internal to com.fasterxml.jackson.databind;
+    opens com.chordly.desktop.model.dto.external to com.fasterxml.jackson.databind;
+    opens com.chordly.desktop.model.entity to com.fasterxml.jackson.databind;
 }
